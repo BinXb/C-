@@ -46,7 +46,7 @@ int main()
 	}	
 
 #### 悬空else
-
+```
 #include <stdio.h>
 int main()
 {
@@ -59,9 +59,9 @@ int main()
 		printf("haha\n");
 	return 0;
 }
-
+```
 输出1-100之间的奇数
-
+```
 #include <stdio.h>
 int main()
 {
@@ -75,4 +75,4 @@ int main()
 	}
 	return 0;
 }
-
+```
