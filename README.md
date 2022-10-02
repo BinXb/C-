@@ -175,3 +175,175 @@ int main()
 	return 0;
 }
 ```
+### while的补充
+
+缓冲区
+```
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+int main()
+{
+	int ret = 0;
+	int ch = 0;
+	char password[20] = { 0 };
+	printf("请输入密码:");
+	scanf("%s", password);//输入密码，并存放在password数组中
+	//缓冲区还剩余个'\n'
+	//读取一下\n
+	//getchar();
+	while ((ch = getchar()) != '\n')//清空缓冲区中的数据
+	{
+		;
+	}
+	printf("请确认(Y/N)");
+	ret = getchar();
+	if (ret == 'Y')
+	{
+		printf("确认");
+	}
+	else
+	{
+		printf("放弃");
+	}
+	return 0;
+}
+```
+ 代码2
+```
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+int main()
+{
+	int ch = 0;
+	while ((ch = getchar()) != EOF)
+	{
+		if (ch < '0' || ch>'9')//只会输出数字字符，其他字符不会输出
+			continue;
+		putchar(ch);
+	}
+	
+	return 0;
+}
+
+```
+### for循环（重要）
+语法：for(表达式1;表达式2;表达式3)
+			{
+					循环语句；
+			}
+
+举例：在屏幕上打印1-10的数字
+```
+#include <stdio.h>
+
+int main()
+{
+	for (int i = 1; i <= 10; i++)
+	{
+		printf("%d\n", i);
+	}
+	return 0;
+}
+```
+
+建议：
+	1.不可在for循环体内修改循环变量，防止for循环失去控制
+	2.建议for语句的循环控制变量的取值采用“前闭后开区间”写法
+
+#### for循环的变种
+>变种1
+
+for循环的初始化，调整，判断都可以省略
+但是：
+	for循环的判断部分如果被省略，则判断条件恒为真
+	如果不是非常熟练，建议大家不要随便省略
+```
+#include <stdio.h>
+
+int main()
+{
+	for (;;)
+	{
+		printf("hehe\n");
+	}
+	return 0;
+}
+```
+
+>变种2
+
+```//比较少见
+#include <stdio.h>
+
+int main()
+{
+	int x, y;
+	for (x = 0, y = 10; x < 2 && y>5; ++x, y++)
+	{
+		printf("hehe\n");
+	}
+	return 0;
+}
+```
+
+### do...while循环
+>语法:
+	do
+		循环语句:
+	while(表达式);
+
+
+```
+int main()
+{
+	//1-10
+	int i = 1;
+	do
+	{
+		printf("%d\n", i);
+		i++;
+	}
+	while (i <= 10);
+	return 0;
+}
+```
+
+### 例题：二分查找
+```
+#include <stdio.h>
+
+int main()
+{
+
+	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };//创建一个数组
+	int k = 7;//确定要查找的元素
+	int sz = sizeof(arr) / sizeof(arr[0]);//计算元素个数
+	int left = 0;//数组左下标
+	int right = sz - 1;//数组右下标
+	while (left<=right)
+	{
+		int mid = (left + right) / 2;//二分查找法，查找中间元素进行比较
+		if (arr[mid] > k)//
+		{
+			right = mid - 1;
+		}
+		else if (arr[mid] < k)
+		{
+			left = mid + 1;
+		}
+		else
+		{
+			printf("找到了，下标是：%d\n", mid);
+			break;
+		}
+	}
+	if (left > right)
+	{
+		printf("找不到\n");
+	}
+	return 0;
+}
+```
+
