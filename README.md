@@ -347,3 +347,63 @@ int main()
 }
 ```
 
+练习习题
+```
+#include <stdio.h>
+#include <string.h>
+#include <windows.h>//引入Sleep函数的头文件
+#include <stdlib.h>//引入system函数的头文件
+int main()
+{
+	//welcome to bit!!!!!
+	//w#################!
+	//we###############!!
+	// ...
+	//###################
+	char arr1[] =  "welcome to bit!!!!!" ;//{welcome to bit!!!!!\0}
+	char arr2[] = "###################" ;
+	int left = 0;
+	//int right = sizeof(arr1) / sizeof(arr1[0]) - 2;//计算数组下标个数
+	int right = strlen(arr1) - 1;//计算数组下标个数
+	while (left<=right)//循环条件
+	{
+		arr2[left] = arr1[left];
+		arr2[right] = arr1[right];
+		printf("%s\n", arr2);
+		//休息一秒
+		Sleep(1000);
+		system("cls");//执行系统命令的一个函数 - cls - 清空屏幕
+		left++;
+		right--;
+	}
+	return 0;
+}
+```
+登录三次
+```
+int main()
+{
+	int i = 0;
+	char password[20] = { 0 };
+	for (i = 0; i <= 3; i++)
+	{
+		printf("请输入密码：");
+		scanf("%s",password);
+		if (strcmp(password ,"123456")==0)//== 不能用来比较两个字符串是否相等，应该用一个库函数 - strcmp
+		{
+			printf("登陆成功！\n");
+			break;
+		}
+		else
+		{
+			printf("密码错误\n");
+		}
+	}
+	if (i > 3)
+	{
+		printf("三次密码均错误，退出程序！\n");
+	}
+	return 0;
+}
+```
+
